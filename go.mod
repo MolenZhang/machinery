@@ -1,4 +1,4 @@
-module machinery
+module github.com/MolenZhang/machinery
 
 go 1.13
 
