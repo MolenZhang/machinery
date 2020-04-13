@@ -326,6 +326,40 @@ func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) 
 	return taskProcessor.Process(signature)
 }
 
+// Modified by Molen at 20200413
+// Use LPOP instead of BLPOP, cause BDRP does not support BLPOP
+// nextTask pops next available task from the default queue
+func (b *Broker) nextTask(queue string) (result []byte, err error) {
+	conn := b.open()
+	defer conn.Close()
+
+	pollPeriodMilliseconds := 1000 // default poll period for normal tasks
+	if b.GetConfig().Redis != nil {
+		configuredPollPeriod := b.GetConfig().Redis.NormalTasksPollPeriod
+		if configuredPollPeriod > 0 {
+			pollPeriodMilliseconds = configuredPollPeriod
+		}
+	}
+	pollPeriod := time.Duration(pollPeriodMilliseconds) * time.Millisecond
+	_ = pollPeriod
+
+	// items, err := redis.ByteSlices(conn.Do("BLPOP", queue, pollPeriod.Seconds()))
+	item, err := redis.Bytes(conn.Do("LPOP", queue))
+	if err != nil {
+		return []byte{}, err
+	}
+
+	// items[0] - the name of the key where an element was popped
+	// items[1] - the value of the popped element
+	/*if len(items) != 2 {
+		return []byte{}, redis.ErrNil
+	}
+	*/
+	result = item
+	return result, nil
+}
+
+/*
 // nextTask pops next available task from the default queue
 func (b *Broker) nextTask(queue string) (result []byte, err error) {
 	conn := b.open()
@@ -355,6 +389,7 @@ func (b *Broker) nextTask(queue string) (result []byte, err error) {
 
 	return result, nil
 }
+*/
 
 // nextDelayedTask pops a value from the ZSET key using WATCH/MULTI/EXEC commands.
 // https://github.com/gomodule/redigo/blob/master/redis/zpop_example_test.go
