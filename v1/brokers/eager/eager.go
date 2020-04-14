@@ -7,7 +7,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/RichardKnop/machinery/v1/brokers/iface"
+	//	"github.com/RichardKnop/machinery/v1/brokers/iface"
+	"github.com/MolenZhang/machinery/v1/brokers/iface"
 	"github.com/RichardKnop/machinery/v1/common"
 	"github.com/RichardKnop/machinery/v1/tasks"
 )
