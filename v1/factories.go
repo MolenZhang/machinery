@@ -10,12 +10,19 @@ import (
 
 	"github.com/RichardKnop/machinery/v1/config"
 
-	amqpbroker "github.com/RichardKnop/machinery/v1/brokers/amqp"
-	eagerbroker "github.com/RichardKnop/machinery/v1/brokers/eager"
-	gcppubsubbroker "github.com/RichardKnop/machinery/v1/brokers/gcppubsub"
-	brokeriface "github.com/RichardKnop/machinery/v1/brokers/iface"
-	redisbroker "github.com/RichardKnop/machinery/v1/brokers/redis"
-	sqsbroker "github.com/RichardKnop/machinery/v1/brokers/sqs"
+	//	amqpbroker "github.com/RichardKnop/machinery/v1/brokers/amqp"
+	amqpbroker "github.com/MolenZhang/machinery/v1/brokers/amqp"
+	// eagerbroker "github.com/RichardKnop/machinery/v1/brokers/eager"
+	eagerbroker "github.com/MolenZhang/machinery/v1/brokers/eager"
+	// gcppubsubbroker "github.com/RichardKnop/machinery/v1/brokers/gcppubsub"
+	gcppubsubbroker "github.com/MolenZhang/machinery/v1/brokers/gcppubsub"
+
+	//	brokeriface "github.com/RichardKnop/machinery/v1/brokers/iface"
+	brokeriface "github.com/MolenZhang/machinery/v1/brokers/iface"
+	//	redisbroker "github.com/RichardKnop/machinery/v1/brokers/redis"
+	redisbroker "github.com/MolenZhang/machinery/v1/brokers/redis"
+	// sqsbroker "github.com/RichardKnop/machinery/v1/brokers/sqs"
+	sqsbroker "github.com/MolenZhang/machinery/v1/brokers/sqs"
 
 	amqpbackend "github.com/RichardKnop/machinery/v1/backends/amqp"
 	dynamobackend "github.com/RichardKnop/machinery/v1/backends/dynamodb"
@@ -92,7 +99,6 @@ func BrokerFactory(cnf *config.Config) (brokeriface.Broker, error) {
 		}
 		return gcppubsubbroker.New(cnf, projectID, subscriptionName)
 	}
-
 	return nil, fmt.Errorf("Factory failed with broker URL: %v", cnf.Broker)
 }
 

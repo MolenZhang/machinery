@@ -14,7 +14,8 @@ import (
 	"github.com/google/uuid"
 
 	backendsiface "github.com/RichardKnop/machinery/v1/backends/iface"
-	brokersiface "github.com/RichardKnop/machinery/v1/brokers/iface"
+	brokersiface "github.com/MolenZhang/machinery/v1/brokers/iface"
+	//brokersiface "github.com/RichardKnop/machinery/v1/brokers/iface"
 	opentracing "github.com/opentracing/opentracing-go"
 )
 

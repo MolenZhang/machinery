@@ -2,15 +2,18 @@ package amqp
 
 import (
 	"fmt"
-	"github.com/RichardKnop/machinery/v1/brokers/iface"
+	// "github.com/RichardKnop/machinery/v1/brokers/iface"
+	"testing"
+	"time"
+
+	"github.com/MolenZhang/machinery/v1/brokers/iface"
 	"github.com/RichardKnop/machinery/v1/config"
 	"github.com/RichardKnop/machinery/v1/tasks"
 	"github.com/streadway/amqp"
-	"testing"
-	"time"
 )
 
-type doNothingProcessor struct {}
+type doNothingProcessor struct{}
+
 func (_ doNothingProcessor) Process(signature *tasks.Signature) error {
 	return fmt.Errorf("failed")
 }
@@ -21,10 +24,10 @@ func (_ doNothingProcessor) CustomQueue() string {
 
 func TestConsume(t *testing.T) {
 	var (
-		iBroker iface.Broker
+		iBroker    iface.Broker
 		deliveries = make(chan amqp.Delivery, 3)
-		closeChan chan *amqp.Error
-		processor doNothingProcessor
+		closeChan  chan *amqp.Error
+		processor  doNothingProcessor
 	)
 
 	t.Run("with deliveries more than the number of concurrency", func(t *testing.T) {
@@ -34,7 +37,7 @@ func TestConsume(t *testing.T) {
 
 		// simulate that there are too much deliveries
 		go func() {
-			for i := 0; i < 3; i++  {
+			for i := 0; i < 3; i++ {
 				deliveries <- amqp.Delivery{} // broker.consumeOne() will complain this error: Received an empty message
 			}
 		}()
@@ -46,9 +49,9 @@ func TestConsume(t *testing.T) {
 			}
 		}()
 
-		select{
-		case <- errChan:
-		case <- time.After(1 * time.Second):
+		select {
+		case <-errChan:
+		case <-time.After(1 * time.Second):
 			t.Error("Maybe deadlock")
 		}
 	})
