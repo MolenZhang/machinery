@@ -7,10 +7,10 @@ import (
 	"sync"
 
 	"github.com/MolenZhang/machinery/v1/backends/result"
+	"github.com/MolenZhang/machinery/v1/brokers/eager"
 	"github.com/MolenZhang/machinery/v1/config"
 	"github.com/MolenZhang/machinery/v1/tasks"
 	"github.com/MolenZhang/machinery/v1/tracing"
-	"github.com/RichardKnop/machinery/v1/brokers/eager"
 	"github.com/google/uuid"
 
 	backendsiface "github.com/MolenZhang/machinery/v1/backends/iface"
