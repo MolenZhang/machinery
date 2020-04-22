@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/MolenZhang/machinery/v1/brokers/iface"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/tasks"
+	"github.com/MolenZhang/machinery/v1/config"
+	"github.com/MolenZhang/machinery/v1/tasks"
 	"github.com/streadway/amqp"
 )
 

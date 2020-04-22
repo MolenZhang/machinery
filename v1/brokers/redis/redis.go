@@ -11,10 +11,10 @@ import (
 	"github.com/RichardKnop/machinery/v1/brokers/errs"
 	// "github.com/RichardKnop/machinery/v1/brokers/iface"
 	"github.com/MolenZhang/machinery/v1/brokers/iface"
-	"github.com/RichardKnop/machinery/v1/common"
-	"github.com/RichardKnop/machinery/v1/config"
+	"github.com/MolenZhang/machinery/v1/common"
+	"github.com/MolenZhang/machinery/v1/config"
+	"github.com/MolenZhang/machinery/v1/tasks"
 	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
 	"github.com/RichardKnop/redsync"
 	"github.com/gomodule/redigo/redis"
 )

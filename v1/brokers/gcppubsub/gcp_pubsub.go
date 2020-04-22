@@ -13,7 +13,7 @@ import (
 	"github.com/RichardKnop/machinery/v1/common"
 	"github.com/RichardKnop/machinery/v1/config"
 	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
+	"github.com/MolenZhang/machinery/v1/tasks"
 )
 
 // Broker represents an Google Cloud Pub/Sub broker

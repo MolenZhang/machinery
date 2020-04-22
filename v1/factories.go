@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/RichardKnop/machinery/v1/config"
+	"github.com/MolenZhang/machinery/v1/config"
 
 	//	amqpbroker "github.com/RichardKnop/machinery/v1/brokers/amqp"
 	amqpbroker "github.com/MolenZhang/machinery/v1/brokers/amqp"

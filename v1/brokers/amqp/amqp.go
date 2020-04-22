@@ -8,13 +8,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RichardKnop/machinery/v1/brokers/errs"
-	// "github.com/RichardKnop/machinery/v1/brokers/iface"
 	"github.com/MolenZhang/machinery/v1/brokers/iface"
-	"github.com/RichardKnop/machinery/v1/common"
-	"github.com/RichardKnop/machinery/v1/config"
+	"github.com/MolenZhang/machinery/v1/common"
+	"github.com/MolenZhang/machinery/v1/config"
+	"github.com/MolenZhang/machinery/v1/tasks"
+	"github.com/RichardKnop/machinery/v1/brokers/errs"
 	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
 	"github.com/pkg/errors"
 	"github.com/streadway/amqp"
 )
@@ -326,10 +325,10 @@ func (b *Broker) consumeOne(delivery amqp.Delivery, taskProcessor iface.TaskProc
 		requeue = true
 		log.INFO.Printf("Task not registered with this worker. Requeing message: %s", delivery.Body)
 
-    if !signature.IgnoreWhenTaskNotRegistered {
+		if !signature.IgnoreWhenTaskNotRegistered {
 			delivery.Nack(multiple, requeue)
 		}
-    
+
 		return nil
 	}
 
