@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RichardKnop/machinery/v1/brokers/errs"
+	"github.com/MolenZhang/machinery/v1/brokers/errs"
 	// "github.com/RichardKnop/machinery/v1/brokers/iface"
 	"github.com/MolenZhang/machinery/v1/brokers/iface"
 	"github.com/MolenZhang/machinery/v1/common"
